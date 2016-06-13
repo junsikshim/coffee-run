@@ -1,14 +1,36 @@
+import 'pixi'
+import 'p2'
 import Phaser from "phaser"
 
-class Game extends Phaser.Game {
+import BootState from "./states/Boot"
+import GameState from "./states/Game"
+
+class CoffeeRun extends Phaser.Game {
     constructor() {
-        let width = document.documentElement.clientWidth > 768 ? 768 : document.documentElement.clientWidth;
-        let height = document.documentElement.clientHeight > 1024 ? 1024 : document.documentElement.clientHeight;
+        super(0, 0, Phaser.CANVAS, 'content', {
+            init: () => {
+                var targetWidth = 1024;
+                var newRatio = window.innerWidth / targetWidth;
+                var pixelRatio = window.devicePixelRatio;
+                var gameWidth = window.innerWidth / newRatio * pixelRatio;
+                var gameHeight = window.innerHeight / newRatio * pixelRatio;
 
-        super(width, height, Phaser.AUTO, 'content', null);
+                this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+                this.scale.setUserScale(newRatio);
+                this.scale.forceLandscape = true;
+                this.scale.updateLayout(true);
+                this.scale.setGameSize(gameWidth, gameHeight);
+            },
 
-        console.log("hello");
+            create: () => {
+                this.state.add("Boot", BootState, false);
+                this.state.add("Game", GameState, false);
+
+                this.state.start("Boot");
+            }
+        });
     }
 }
 
-window.game = new Game();
+window.game = new CoffeeRun();
+

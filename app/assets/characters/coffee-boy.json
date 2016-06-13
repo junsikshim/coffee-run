@@ -1,0 +1,76 @@
+{"frames": {
+
+"coffeeboy_f01.png":
+{
+	"frame": {"x":85,"y":1,"w":38,"h":61},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":13,"y":0,"w":38,"h":61},
+	"sourceSize": {"w":64,"h":64}
+},
+"coffeeboy_f02.png":
+{
+	"frame": {"x":95,"y":64,"w":38,"h":59},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":9,"y":5,"w":38,"h":59},
+	"sourceSize": {"w":64,"h":64}
+},
+"coffeeboy_f03.png":
+{
+	"frame": {"x":125,"y":1,"w":42,"h":57},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":7,"w":42,"h":57},
+	"sourceSize": {"w":64,"h":64}
+},
+"coffeeboy_f04.png":
+{
+	"frame": {"x":135,"y":60,"w":32,"h":59},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":15,"y":5,"w":32,"h":59},
+	"sourceSize": {"w":64,"h":64}
+},
+"coffeeboy_f05.png":
+{
+	"frame": {"x":43,"y":1,"w":40,"h":61},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":11,"y":0,"w":40,"h":61},
+	"sourceSize": {"w":64,"h":64}
+},
+"coffeeboy_f06.png":
+{
+	"frame": {"x":1,"y":1,"w":40,"h":63},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":1,"w":40,"h":63},
+	"sourceSize": {"w":64,"h":64}
+},
+"coffeeboy_f07.png":
+{
+	"frame": {"x":1,"y":66,"w":44,"h":57},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":7,"w":44,"h":57},
+	"sourceSize": {"w":64,"h":64}
+},
+"coffeeboy_f08.png":
+{
+	"frame": {"x":47,"y":64,"w":46,"h":59},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":1,"y":5,"w":46,"h":59},
+	"sourceSize": {"w":64,"h":64}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "coffee-boy.png",
+	"format": "RGBA8888",
+	"size": {"w":168,"h":124},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:dd5c095f54da8244abf872594c3454f7:f597017f2ddafa78d131a46aa7b1a724:fd22f57321eafa9ce9d4d81c23c59931$"
+}
+}
