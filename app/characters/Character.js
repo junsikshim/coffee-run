@@ -1,12 +1,16 @@
 import Phaser from "phaser"
 
 export default class Character extends Phaser.Sprite {
-    constructor(game, x, y, key) {
+    constructor(game, lane, key) {
+        let x = lane * -20 + 132;
+        let y = lane * 38 + 110;
+
         super(game, x, y, key);
 
         this.state = Character.STATE_INIT;
         this.actions = [];
         this.curAction = null;
+        this.lane = lane;
     }
 
     get attributes() {
@@ -18,7 +22,12 @@ export default class Character extends Phaser.Sprite {
         this.actions = attrs.actions;
     }
 
+    getPosX() {
+        return this.x + this.lane * -20;
+    }
+
     start() {
+        this.state = Character.STATE_STARTED;
         this.action();
     }
 
@@ -27,43 +36,52 @@ export default class Character extends Phaser.Sprite {
     }
 
     action() {
-        if (this.curAction) {
-            this.curAction.execute();
+        let percentage = 0;
+        let rnd = this.game.rnd.integerInRange(0, 100);
 
-        } else {
-            let percentage = 0;
-            let rnd = this.game.rnd.integerInRange(0, 100);
+        for (let action of this.actions) {
+            percentage += action.percentage;
 
-            for (var action of this.actions) {
-                percentage += action.percentage;
-
-                if (rnd < percentage) {
-                    console.log(action.action);
-                    this.curAction = action.action;
-                    this.curAction.preExecute();
-console.log("duration", action.duration);
-                    this.curActionTimer = this.game.time.events.add(action.duration, () => {
-                        console.log("curAction", this.curAction);
-                        this.curAction.postExecute();
-                        this.curAction = null;
-                    });
-
-                    break;
-                }
+            if (rnd < percentage) {
+                this.apply(action);
+                break;
             }
-
-            this.action();
         }
     }
 
     postAction() {
 
     }
+
+    apply(action) {
+        let doExecute = action.action.preExecute();
+
+        if (doExecute) {
+            this.curAction = action.action;
+            this.curAction.execute();
+
+            this.game.time.events.remove(this.curActionTimer);
+            this.curActionTimer = this.game.time.events.add(action.duration, () => {
+                this.curAction.postExecute();
+                this.curAction = null;
+            });
+        }
+    }
+
+    update() {
+        if (this.state !== Character.STATE_STARTED)
+            return;
+
+        if (this.curAction)
+            this.curAction.update();
+        else
+            this.action();
+    }
 }
 
 Character.STATE_INIT = 0;
 Character.STATE_READY = 1;
-Character.STATE_NORMAL = 2;
+Character.STATE_STARTED = 2;
 Character.STATE_RUN = 3;
 Character.STATE_SPRINT = 4;
 Character.STATE_TRANSFORM = 5;

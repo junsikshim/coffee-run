@@ -1,0 +1,116 @@
+{"frames": {
+
+"ironboy_boost_f01.png":
+{
+	"frame": {"x":265,"y":64,"w":59,"h":52},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":5,"w":59,"h":52},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_boost_f02.png":
+{
+	"frame": {"x":1,"y":66,"w":64,"h":52},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":7,"w":64,"h":52},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_boost_f03.png":
+{
+	"frame": {"x":67,"y":66,"w":64,"h":52},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":9,"w":64,"h":52},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_boost_f04.png":
+{
+	"frame": {"x":133,"y":64,"w":64,"h":52},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":7,"w":64,"h":52},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_boost_f05.png":
+{
+	"frame": {"x":199,"y":64,"w":64,"h":52},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":5,"w":64,"h":52},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_f01.png":
+{
+	"frame": {"x":69,"y":1,"w":52,"h":61},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":7,"y":0,"w":52,"h":61},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_f02.png":
+{
+	"frame": {"x":123,"y":1,"w":48,"h":61},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":9,"y":3,"w":48,"h":61},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_f03.png":
+{
+	"frame": {"x":261,"y":1,"w":38,"h":61},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":17,"y":3,"w":38,"h":61},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_f04.png":
+{
+	"frame": {"x":1,"y":1,"w":32,"h":63},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":19,"y":1,"w":32,"h":63},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_f05.png":
+{
+	"frame": {"x":173,"y":1,"w":42,"h":61},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":15,"y":0,"w":42,"h":61},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_f06.png":
+{
+	"frame": {"x":217,"y":1,"w":42,"h":61},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":15,"y":3,"w":42,"h":61},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_f07.png":
+{
+	"frame": {"x":301,"y":1,"w":34,"h":61},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":17,"y":3,"w":34,"h":61},
+	"sourceSize": {"w":64,"h":64}
+},
+"ironboy_f08.png":
+{
+	"frame": {"x":35,"y":1,"w":32,"h":63},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":19,"y":1,"w":32,"h":63},
+	"sourceSize": {"w":64,"h":64}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "iron-boy.png",
+	"format": "RGBA8888",
+	"size": {"w":336,"h":119},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:62d1382b5bedfb27c7107eabbb96bb6b:023d17ce89fc763b0f5c7bae8b0f6133:9ab0f5294ed59c3d15f284c9bfdec8fe$"
+}
+}

@@ -1,17 +1,18 @@
 import Phaser from "phaser"
 import CoffeeBoy from "../characters/CoffeeBoy"
+import IronBoy from "../characters/IronBoy"
 
 export default class extends Phaser.State {
     init() {
-        this.characters = [
+        this.characterClasses = [
             CoffeeBoy,
-            CoffeeBoy,
-            CoffeeBoy,
-            CoffeeBoy
+            IronBoy,
+            //CoffeeBoy,
+            //CoffeeBoy
         ];
 
         this.numOfCharacters = 4;
-        this.instances = [];
+        this.characters = [];
 
         this.isStarted = false;
     }
@@ -23,37 +24,33 @@ export default class extends Phaser.State {
         this.game.load.image("start-button", require("../assets/images/start_button.png"));
 
         this.game.load.atlasJSONHash("coffee-boy", require("../assets/characters/coffee-boy.png"), require("../assets/characters/coffee-boy.json"));
+        this.game.load.atlasJSONHash("iron-boy", require("../assets/characters/iron-boy.png"), require("../assets/characters/iron-boy.json"));
     }
 
     create() {
-        var skySprite = this.game.add.sprite(0, 0, "sky");
-        var trackSprite = this.game.add.sprite(0, 150, "track");
+        var game = this.game;
+        var skySprite = game.add.sprite(0, 0, "sky");
+        var trackSprite = game.add.sprite(0, 150, "track");
         trackSprite.scale.setTo(0.7);
 
-        var startButton = this.game.add.button(800, 10, "start-button", () => {
+        game.world.setBounds(0, 0, 1340, 1000);
+        game.camera.bounds = game.world.bounds;
+
+        var startButton = game.add.button(800, 10, "start-button", () => {
             startButton.visible = false;
             this.start();
         });
 
-        //var coffeeBoySprite = this.game.add.sprite(100, 300, "coffee-boy");
-        //coffeeBoySprite.animations.add("run", Phaser.Animation.generateFrameNames("coffeeboy_f", 1, 8, ".png", 2), 10, true);
-        //coffeeBoySprite.animations.play("run");
-
-        var x = 132;
-        var y = 110;
-
-        for (var Class of this.characters) {
-            var sprite = new Class(this.game, x, y);
-            this.instances.push(sprite);
-
-            x -= 20;
-            y += 38;
+        for (let i = 0; i < this.characterClasses.length; i++) {
+            var Class = this.characterClasses[i];
+            var sprite = new Class(game, i);
+            this.characters.push(sprite);
         }
     }
 
     start() {
-        for (var sprite of this.instances) {
-            sprite.start();
+        for (let character of this.characters) {
+            character.start();
         }
 
         this.isStarted = true;
@@ -65,9 +62,22 @@ export default class extends Phaser.State {
 
     update() {
         if (this.isStarted) {
-            for (var sprite of this.instances) {
-                sprite.x += 1;
+            for (let character of this.characters) {
+                character.update();
             }
+
+            this.updateCamera();
         }
+    }
+
+    updateCamera() {
+        let lastX = 9999999;
+
+        for (let character of this.characters) {
+            if (character.getPosX() < lastX)
+                lastX = character.getPosX();
+        }
+
+        this.game.camera.x = lastX - 400;
     }
 }

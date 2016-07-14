@@ -4,7 +4,7 @@ export default class {
     }
 
     preExecute() {
-
+        return true;
     }
 
     execute() {
@@ -12,6 +12,10 @@ export default class {
     }
 
     postExecute() {
+
+    }
+
+    update() {
 
     }
 }

@@ -10,4 +10,8 @@ export default class extends Action {
     execute() {
         this.character.play("sprint");
     }
+
+    update() {
+        this.character.x += this.speed;
+    }
 }
