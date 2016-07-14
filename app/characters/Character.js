@@ -75,7 +75,7 @@ export default class Character extends Phaser.Sprite {
         if (this.state !== Character.STATE_STARTED)
             return;
 
-        if (this.getPosX() > 1250) {
+        if (this.getPosX() > 1255) {
             this.state = Character.STATE_DONE;
             this.animations.stop();
             this.game.state.getCurrentState().onCharacterFinish(this);

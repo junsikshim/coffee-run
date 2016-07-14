@@ -48,8 +48,8 @@ export default class extends Phaser.State {
         game.camera.bounds = game.world.bounds;
 
         this.trackGroup = game.add.group();
-
         this.characterGroup = game.add.group();
+        this.effectGroup = game.add.group();
 
         var startButton = game.add.button(800, 10, "start-button", () => {
             startButton.visible = false;
@@ -99,18 +99,18 @@ export default class extends Phaser.State {
     onCharacterAction(character, action) {
         this.game.paused = true;
 
-        var actionBgSprite = this.game.add.sprite(0, character.y + 35, "action-bg");
+        var actionBgSprite = this.game.add.sprite(0, character.y + 36, "action-bg");
         actionBgSprite.scale.setTo(10, 0.4);
         this.trackGroup.add(actionBgSprite);
 
-        let name = this.game.add.text(20, 20, action.message, {
+        let name = this.game.add.text(0, actionBgSprite.y + 3, action.message, {
             font: "28px Arial",
             fill: "#ffffff",
             fontStyle: "italic"
         });
 
         name.x = character.x - name.width - 30;
-        name.y = actionBgSprite.y + 3;
+
         this.trackGroup.add(name);
 
         setTimeout(() => {
@@ -123,8 +123,16 @@ export default class extends Phaser.State {
     onCharacterFinish(character) {
         this.finishOrder.push(character);
 
+        let num = this.game.add.text(character.x - 35, character.y + 36, this.finishOrder.length, {
+            font: "36px Arial",
+            fill: "#ffffff",
+            fontStyle: "italic"
+        });
+
+        this.effectGroup.add(num);
+
         if (this.finishOrder.length === this.numOfCharacters) {
-            console.log(this.finishOrder);
+
         }
     }
 }
