@@ -33,8 +33,6 @@ export default class extends Phaser.State {
         this.game.load.atlasJSONHash("iron-boy", require("../assets/characters/iron-boy.png"), require("../assets/characters/iron-boy.json"));
         this.game.load.atlasJSONHash("fabio", require("../assets/characters/fabio.png"), require("../assets/characters/fabio.json"));
         this.game.load.atlasJSONHash("macaron", require("../assets/characters/macaron.png"), require("../assets/characters/macaron.json"));
-
-        this.game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
     }
 
     create() {
@@ -46,13 +44,12 @@ export default class extends Phaser.State {
         var trackSprite = game.add.sprite(0, 150, "track");
         trackSprite.scale.setTo(0.7);
 
-        var actionBgSprite = game.add.sprite(0, 0, "action-bg");
-        actionBgSprite.scale.setTo(10, 0.4);
-        actionBgSprite.visible = false;
-        this.actionBgSprite = actionBgSprite;
-
         game.world.setBounds(0, 0, 1330, 1000);
         game.camera.bounds = game.world.bounds;
+
+        this.trackGroup = game.add.group();
+
+        this.characterGroup = game.add.group();
 
         var startButton = game.add.button(800, 10, "start-button", () => {
             startButton.visible = false;
@@ -102,23 +99,25 @@ export default class extends Phaser.State {
     onCharacterAction(character, action) {
         this.game.paused = true;
 
-        this.actionBgSprite.visible = true;
-        this.actionBgSprite.y = character.y + 35;
+        var actionBgSprite = this.game.add.sprite(0, character.y + 35, "action-bg");
+        actionBgSprite.scale.setTo(10, 0.4);
+        this.trackGroup.add(actionBgSprite);
 
-        let name = this.game.add.text(20, 20, action.key, {
-            font: "30px Arial",
+        let name = this.game.add.text(20, 20, action.message, {
+            font: "28px Arial",
             fill: "#ffffff",
             fontStyle: "italic"
         });
 
         name.x = character.x - name.width - 30;
-        name.y = this.actionBgSprite.y + 2;
+        name.y = actionBgSprite.y + 3;
+        this.trackGroup.add(name);
 
         setTimeout(() => {
-            this.game.world.remove(name);
-            this.actionBgSprite.visible = false;
+            this.trackGroup.remove(name);
+            this.trackGroup.remove(actionBgSprite);
             this.game.paused = false;
-        }, 1500);
+        }, 1300);
     }
 
     onCharacterFinish(character) {

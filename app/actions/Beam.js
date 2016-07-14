@@ -5,6 +5,7 @@ export default class extends Action {
     constructor(character, speed) {
         super("beam", character);
 
+        this.message = "아임 아이언보이!";
         this.speed = speed;
     }
 

@@ -8,11 +8,11 @@ export default class extends Character {
 
         this.attributes = {
             actions: [{
-                action: new RunAction(this, 0.6),
+                action: new RunAction(this, 0.65),
                 duration: 500,
                 percentage: 90
             }, {
-                action: new SugarAction(this, 0.6),
+                action: new SugarAction(this, 0.65),
                 duration: 2000,
                 percentage: 10
             }]

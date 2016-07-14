@@ -8,12 +8,12 @@ export default class extends Character {
 
         this.attributes = {
             actions: [{
-                action: new RunAction(this, 0.8),
+                action: new RunAction(this, 0.75),
                 duration: 500,
                 percentage: 90
             }, {
                 action: new StarAction(this, 1),
-                duration: 1200,
+                duration: 1400,
                 percentage: 10
             }]
         };

@@ -6,6 +6,7 @@ export default class extends Action {
     constructor(character, speed) {
         super("sugar", character);
 
+        this.message = "슈가밤!";
         this.speed = speed;
     }
 

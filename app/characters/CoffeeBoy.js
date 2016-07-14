@@ -23,5 +23,6 @@ export default class extends Character {
         this.animations.add("hit", Phaser.Animation.generateFrameNames("coffeeboy_f", 1, 1, ".png", 2), 5, true);
 
         this.game.add.existing(this);
+        this.gameState.characterGroup.add(this);
     }
 }

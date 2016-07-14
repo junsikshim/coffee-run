@@ -4,6 +4,7 @@ export default class extends Action {
     constructor(character, speed) {
         super("sprint", character);
 
+        this.message = "샷 추가요!";
         this.speed = speed;
     }
 

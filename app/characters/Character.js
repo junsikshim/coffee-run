@@ -12,6 +12,7 @@ export default class Character extends Phaser.Sprite {
         this.actions = [];
         this.curAction = null;
         this.lane = lane;
+        this.totalActionCount = 0;
     }
 
     get attributes() {
@@ -37,11 +38,15 @@ export default class Character extends Phaser.Sprite {
         let rnd = this.game.rnd.integerInRange(0, 100);
 
         for (let action of this.actions) {
-            percentage += action.percentage;
+            if (this.totalActionCount !== 0)
+                percentage += action.percentage;
+            else
+                percentage = 100;
 
             if (rnd < percentage) {
                 let isActive = action !== this.actions[0];
                 this.apply(action, isActive);
+                this.totalActionCount++;
 
                 break;
             }
