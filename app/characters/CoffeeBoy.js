@@ -18,7 +18,7 @@ export default class extends Character {
             }]
         };
 
-        this.animations.add("run", Phaser.Animation.generateFrameNames("coffeeboy_f", 1, 8, ".png", 2), 10, true);
+        this.animations.add("run", Phaser.Animation.generateFrameNames("coffeeboy_f", 1, 8, ".png", 2), 12, true);
         this.animations.add("sprint", Phaser.Animation.generateFrameNames("coffeeboy_f", 1, 8, ".png", 2), 20, true);
         this.animations.add("hit", Phaser.Animation.generateFrameNames("coffeeboy_f", 1, 1, ".png", 2), 5, true);
 

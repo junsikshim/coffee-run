@@ -2,7 +2,7 @@ import Action from "./Action"
 
 export default class extends Action {
     constructor(character, speed) {
-        super(character, 5);
+        super("sprint", character);
 
         this.speed = speed;
     }

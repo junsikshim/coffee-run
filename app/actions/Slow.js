@@ -1,10 +1,10 @@
 import Action from "./Action"
 
 export default class extends Action {
-    constructor(character, speed) {
-        super("run", character);
+    constructor(character) {
+        super("slow", character);
 
-        this.speed = speed;
+        this.speed = 0.2;
     }
 
     execute() {

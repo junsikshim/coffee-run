@@ -1,9 +1,10 @@
 import Action from "./Action"
-import HitAction from "./Hit"
+import SlowAction from "./Slow"
+import RunAction from "./Run"
 
 export default class extends Action {
     constructor(character, speed) {
-        super("beam", character);
+        super("sugar", character);
 
         this.speed = speed;
     }
@@ -11,18 +12,17 @@ export default class extends Action {
     execute() {
         var character = this.character;
 
-        character.play("beam");
-
         var characters = character.game.state.getCurrentState().characters;
 
         for (let c of characters) {
-            if (c.getPosX() > character.getPosX()) {
+            if (c !== character) {
                 let action = {
-                    action: new HitAction(c),
+                    action: new SlowAction(c),
                     duration: 2000
                 };
 
                 c.apply(action);
+
             }
         }
     }

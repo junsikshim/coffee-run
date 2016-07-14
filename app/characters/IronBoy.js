@@ -18,7 +18,7 @@ export default class extends Character {
             }]
         };
 
-        this.animations.add("run", Phaser.Animation.generateFrameNames("ironboy_f", 1, 8, ".png", 2), 10, true);
+        this.animations.add("run", Phaser.Animation.generateFrameNames("ironboy_f", 1, 8, ".png", 2), 12, true);
         this.animations.add("beam", Phaser.Animation.generateFrameNames("ironboy_boost_f", 1, 5, ".png", 2), 5, true);
 
         this.game.add.existing(this);

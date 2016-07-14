@@ -7,6 +7,7 @@ export default class Character extends Phaser.Sprite {
 
         super(game, x, y, key);
 
+        this.gameState = game.state.getCurrentState();
         this.state = Character.STATE_INIT;
         this.actions = [];
         this.curAction = null;
@@ -23,16 +24,12 @@ export default class Character extends Phaser.Sprite {
     }
 
     getPosX() {
-        return this.x + this.lane * -20;
+        return this.x + this.lane * 20;
     }
 
     start() {
         this.state = Character.STATE_STARTED;
         this.action();
-    }
-
-    preAction() {
-
     }
 
     action() {
@@ -43,20 +40,21 @@ export default class Character extends Phaser.Sprite {
             percentage += action.percentage;
 
             if (rnd < percentage) {
-                this.apply(action);
+                let isActive = action !== this.actions[0];
+                this.apply(action, isActive);
+
                 break;
             }
         }
     }
 
-    postAction() {
-
-    }
-
-    apply(action) {
-        let doExecute = action.action.preExecute();
+    apply(action, isActive) {
+        let doExecute = action.action.preExecute(action.action.character, this);
 
         if (doExecute) {
+            if (isActive)
+                this.gameState.onCharacterAction(this, action.action);
+
             this.curAction = action.action;
             this.curAction.execute();
 
@@ -71,6 +69,13 @@ export default class Character extends Phaser.Sprite {
     update() {
         if (this.state !== Character.STATE_STARTED)
             return;
+
+        if (this.getPosX() > 1250) {
+            this.state = Character.STATE_DONE;
+            this.animations.stop();
+            this.game.state.getCurrentState().onCharacterFinish(this);
+            return;
+        }
 
         if (this.curAction)
             this.curAction.update();
