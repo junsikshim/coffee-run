@@ -4,20 +4,15 @@ export default class {
     constructor(key, character) {
         this.key = key;
         this.character = character;
+        this.isDefault = false;
     }
 
-    preExecute(source, target) {
-        if (!target)
+    preExecute(srcAction, srcCharacter) {
+        if (this.character.state === Character.STATE_DONE)
             return false;
 
-        if (target.state === Character.STATE_DONE)
-            return false;
-
-        if (source === target)
+        if (srcCharacter === this.character)
             return true;
-
-        if (target.curAction && target.curAction.key === "star")
-            return false;
 
         return true;
     }

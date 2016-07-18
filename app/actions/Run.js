@@ -5,6 +5,7 @@ export default class extends Action {
         super("run", character);
 
         this.speed = speed;
+        this.isDefault = true;
     }
 
     execute() {

@@ -8,6 +8,10 @@ export default class extends Action {
         this.speed = speed;
     }
 
+    preExecute(srcAction, srcCharacter) {
+        return false;
+    }
+
     execute() {
         this.character.play("star");
     }

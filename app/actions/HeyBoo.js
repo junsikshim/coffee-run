@@ -1,30 +1,28 @@
 import Action from "./Action"
-import SlowAction from "./Slow"
-import RunAction from "./Run"
 
 export default class extends Action {
     constructor(character, speed) {
-        super("sugar", character);
+        super("heyboo", character);
 
-        this.message = "슈가밤!";
+        this.message = "헤이부!";
         this.speed = speed;
     }
 
     execute() {
         var character = this.character;
-
         var characters = character.game.state.getCurrentState().characters;
+        var closestCharacter = null;
+        var closestPos = 9999999;
 
         for (let c of characters) {
-            if (c !== character) {
-                let action = {
-                    actionObject: new SlowAction(c),
-                    duration: 2000
-                };
-
-                c.applyAction(action, character);
+            if (c.getPosX() > character.getPosX() && c.getPosX() < closestPos) {
+                closestPos = c.getPosX();
+                closestCharacter = c;
             }
         }
+
+        if (closestCharacter)
+            this.character.setPosX(closestCharacter.getPosX());
     }
 
     update() {

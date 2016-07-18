@@ -8,11 +8,11 @@ export default class extends Character {
 
         this.attributes = {
             actions: [{
-                action: new RunAction(this, 0.75),
+                actionObject: new RunAction(this, 0.75),
                 duration: 500,
                 percentage: 90
             }, {
-                action: new StarAction(this, 1),
+                actionObject: new StarAction(this, 1),
                 duration: 1400,
                 percentage: 10
             }]
@@ -22,6 +22,6 @@ export default class extends Character {
         this.animations.add("star", Phaser.Animation.generateFrameNames("fabio_speedup_f", 1, 8, ".png", 2), 15, true);
         this.animations.add("hit", Phaser.Animation.generateFrameNames("fabio_f", 1, 1, ".png", 2), 5, true);
 
-        this.game.add.existing(this);
+        this.gameState.characterGroup.add(this);
     }
 }

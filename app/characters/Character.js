@@ -28,6 +28,10 @@ export default class Character extends Phaser.Sprite {
         return this.x + this.lane * 20;
     }
 
+    setPosX(x) {
+        this.x = x - this.lane * 20;
+    }
+
     start() {
         this.state = Character.STATE_STARTED;
         this.action();
@@ -44,8 +48,7 @@ export default class Character extends Phaser.Sprite {
                 percentage = 100;
 
             if (rnd < percentage) {
-                let isActive = action !== this.actions[0];
-                this.apply(action, isActive);
+                this._applyAction(action, true);
                 this.totalActionCount++;
 
                 break;
@@ -53,22 +56,35 @@ export default class Character extends Phaser.Sprite {
         }
     }
 
-    apply(action, isActive) {
-        let doExecute = action.action.preExecute(action.action.character, this);
+    preApplyAction(srcAction, srcCharacter) {
+        if (this.curAction)
+            return this.curAction.actionObject.preExecute(srcAction, srcCharacter);
+
+        return true;
+    }
+
+    applyAction(action, srcCharacter) {
+        let doExecute = this.preApplyAction(action, srcCharacter);
 
         if (doExecute) {
-            if (isActive)
-                this.gameState.onCharacterAction(this, action.action);
-
-            this.curAction = action.action;
-            this.curAction.execute();
-
-            this.game.time.events.remove(this.curActionTimer);
-            this.curActionTimer = this.game.time.events.add(action.duration, () => {
-                this.curAction.postExecute();
-                this.curAction = null;
-            });
+            this._applyAction(action, false);
         }
+    }
+    
+    _applyAction(action, isOwn) {
+        var actionObj = action.actionObject;
+
+        if (!actionObj.isDefault && isOwn)
+            this.gameState.onCharacterAction(this, action);
+
+        this.curAction = action;
+        actionObj.execute(this);
+
+        this.game.time.events.remove(this.curActionTimer);
+        this.curActionTimer = this.game.time.events.add(action.duration, () => {
+            this.curAction.actionObject.postExecute();
+            this.curAction = null;
+        });
     }
 
     update() {
@@ -83,7 +99,7 @@ export default class Character extends Phaser.Sprite {
         }
 
         if (this.curAction)
-            this.curAction.update();
+            this.curAction.actionObject.update();
         else
             this.action();
     }

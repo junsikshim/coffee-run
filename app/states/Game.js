@@ -3,6 +3,8 @@ import CoffeeBoy from "../characters/CoffeeBoy"
 import IronBoy from "../characters/IronBoy"
 import Fabio from "../characters/Fabio"
 import Macaron from "../characters/Macaron"
+import Taku from "../characters/Taku"
+import HeyBoo from "../characters/HeyBoo"
 
 export default class extends Phaser.State {
     init() {
@@ -10,12 +12,12 @@ export default class extends Phaser.State {
             CoffeeBoy,
             IronBoy,
             Fabio,
-            Macaron
-            //CoffeeBoy,
-            //CoffeeBoy
+            Macaron,
+            Taku,
+            HeyBoo
         ];
 
-        this.numOfCharacters = 4;
+        this.numOfCharacters = 8;
         this.characters = [];
         this.finishOrder = [];
 
@@ -33,6 +35,8 @@ export default class extends Phaser.State {
         this.game.load.atlasJSONHash("iron-boy", require("../assets/characters/iron-boy.png"), require("../assets/characters/iron-boy.json"));
         this.game.load.atlasJSONHash("fabio", require("../assets/characters/fabio.png"), require("../assets/characters/fabio.json"));
         this.game.load.atlasJSONHash("macaron", require("../assets/characters/macaron.png"), require("../assets/characters/macaron.json"));
+        this.game.load.atlasJSONHash("taku", require("../assets/characters/taku.png"), require("../assets/characters/taku.json"));
+        this.game.load.atlasJSONHash("heyboo", require("../assets/characters/heyboo.png"), require("../assets/characters/heyboo.json"));
     }
 
     create() {
@@ -57,6 +61,9 @@ export default class extends Phaser.State {
         });
 
         for (let i = 0; i < this.numOfCharacters; i++) {
+            if (this.characterClasses.length <= i)
+                break;
+
             var Class = this.characterClasses[i];
             var sprite = new Class(game, i);
             this.characters.push(sprite);
@@ -103,7 +110,7 @@ export default class extends Phaser.State {
         actionBgSprite.scale.setTo(10, 0.4);
         this.trackGroup.add(actionBgSprite);
 
-        let name = this.game.add.text(0, actionBgSprite.y + 3, action.message, {
+        let name = this.game.add.text(0, actionBgSprite.y + 3, action.actionObject.message, {
             font: "28px Arial",
             fill: "#ffffff",
             fontStyle: "italic"

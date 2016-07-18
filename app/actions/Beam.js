@@ -19,11 +19,11 @@ export default class extends Action {
         for (let c of characters) {
             if (c.getPosX() > character.getPosX()) {
                 let action = {
-                    action: new HitAction(c),
+                    actionObject: new HitAction(c),
                     duration: 2000
                 };
 
-                c.apply(action);
+                c.applyAction(action);
             }
         }
     }
